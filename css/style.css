@@ -17,8 +17,8 @@ body{
 }
 
 .main{
-    width: 50%;
-    height: 55%;
+    width: 1000px;
+    height: 550px;
     background-color: white;
     padding: 20px;
     position: fixed;
@@ -63,7 +63,7 @@ body{
 .buttonDiv{
     /* put div on right side of screen */
     position: fixed;
-    top: 48%;
+    top: 60%;
     right: 10%;
     transform: translate(0, -50%);
 
