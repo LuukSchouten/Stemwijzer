@@ -26,3 +26,67 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.top{
+    margin-left: 3em;
+    margin-top: 1em;
+}
+
+.topTxt{
+    margin: 0em 0em 1em 1.9em;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.blue{
+    color: #00a8ff;
+}
+
+.middle{
+    margin-left: 6em;
+    margin-top: 3.5em;
+}
+
+.note{
+    /* put child elements next to each other in a row  */
+    width: 20em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.noteTxt{
+    margin-left: 2em;
+}
+
+.buttonDiv{
+    /* put div on right side of screen */
+    position: fixed;
+    top: 48%;
+    right: 10%;
+    transform: translate(0, -50%);
+
+}
+
+.startBtn{
+    /* put button to the right of the note */
+    margin-left: 2em;
+    margin-top: 1em;
+    width: 10em;
+    height: 3em;
+    border: none;
+    border-radius: 5px;
+    background-color: #00a8ff;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dottedHr{
+    margin-top: 2.5em;
+    width: 100%;
+    border-top: 1px dotted black;
+
+}
