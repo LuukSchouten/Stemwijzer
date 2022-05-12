@@ -123,3 +123,32 @@ body{
     padding: 2px;
     color: #00a8ff;
 }
+
+.progressBar{
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background: transparent;
+
+}
+
+.progressBar::before{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00a8ff;
+    transform: scaleX(0);
+    transition: transform 0.5s ease-in-out;
+}
+
+.backBtn{
+    margin-left: 2em;
+    margin-top: 1em;
+    width: 30px;
+    padding: 15px;
+    border-radius: 50%; 
+    background-color: #E7EAEB;
+}
