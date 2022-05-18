@@ -149,10 +149,14 @@ body{
     color: black;
     margin-left: 2em;
     margin-top: 1em;
-    width: 30px;
+    width: 4.7em;
     padding: 15px;
     border-radius: 50%; 
     background-color: #E7EAEB;
+}
+
+.backBtn:hover{
+    cursor: pointer;
 }
 
 .question{

@@ -16,11 +16,11 @@
                 
             </div>
             
-            <a href="index.html">
-            <div class="backBtn">
-                <i class="fa-solid fa-arrow-left fa-2x"></i>
-            </div>
-            </a>
+            <button onclick="goBack();" class="backBtn">
+                <div>
+                    <i class="fa-solid fa-arrow-left fa-2x"></i>
+                </div>
+            </button>
 
             <div class="middle">
                 <div class="questionDiv">
@@ -30,10 +30,10 @@
             </div>
 
             <div class="options">
-                <button class="eens optionbtn" onclick="next();">Eens</button>
-                <button class="none optionbtn" onclick="next();">Geen van beide</button>
-                <button class="oneens optionbtn" onclick="next();">Oneens</button>
-                <button class="skip" onclick="next();"><p>Sla deze vraag over<i class="fa-solid fa-arrow-right fa-sm arrow"></i></p></i></button>
+                <button id="eens" class="optionbtn" onclick="next();">Eens</button>
+                <button id="none" class="optionbtn" onclick="next();">Geen van beide</button>
+                <button id="oneens" class="optionbtn" onclick="next();">Oneens</button>
+                <button id="skip" class="skip" onclick="next();"><p>Sla deze vraag over<i class="fa-solid fa-arrow-right fa-sm arrow"></i></p></i></button>
             </div>
 
             <div class="opinions">

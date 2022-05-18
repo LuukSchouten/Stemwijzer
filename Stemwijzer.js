@@ -12,14 +12,31 @@ function updateStelling(){
             stelling.innerHTML = subjects[stellingNmr].statement;
         }
     }
+
+    //make button color blue if it is the last stelling
+    if(stellingNmr == subjects.length-1){
+        document.getElementById("next").style.backgroundColor = "#2196F3";
+    }
+    else{
+        document.getElementById("next").style.backgroundColor = "#F44336";
+    }
+
 }
 
-function next(){
-    console.log('amogus');
-    stellingNmr += 1;
+function goBack(){
+    if(stellingNmr <= 0){
+        window.location.href = "index.html";
+    }
+    stellingNmr -= 1;
     updateStelling();
 }
 
-function test(){
-    console.log('test');
+function next(){
+    if(stellingNmr < 29){
+        stellingNmr += 1;
+        updateStelling(e);
+    }
 }
+
+
+
