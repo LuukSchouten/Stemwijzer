@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
-    <script type="text/javascript" src="Stemwijzer.js"></script>
     <script src="https://kit.fontawesome.com/641a94e729.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Stemwijzer</title>
@@ -26,16 +24,16 @@
 
             <div class="middle">
                 <div class="questionDiv">
-                    <h2 class="questionTxt blue">1. Bindend referendum</h2>
-                    <h2 class="question">Er moet een bindend referendum komen, waarmee burgers door het parlement aangenomen wetten kunnen tegenhouden.</h2>
+                    <h2 class="questionTxt blue" id="stellingHead"></h2>
+                    <h2 class="question" id="stelling"></h2>
                 </div>
             </div>
 
             <div class="options">
-                <button class="eens optionbtn">Eens</button>
-                <button class="none optionbtn">Geen van beide</button>
-                <button class="oneens optionbtn">Oneens</button>
-                <button class="skip"><p>Sla deze vraag over<i class="fa-solid fa-arrow-right fa-sm arrow"></i></p></i></button>
+                <button class="eens optionbtn" onclick="next();">Eens</button>
+                <button class="none optionbtn" onclick="next();">Geen van beide</button>
+                <button class="oneens optionbtn" onclick="next();">Oneens</button>
+                <button class="skip" onclick="next();"><p>Sla deze vraag over<i class="fa-solid fa-arrow-right fa-sm arrow"></i></p></i></button>
             </div>
 
             <div class="opinions">
@@ -47,4 +45,6 @@
         </div>
     </div>
 </body>
+    <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
+    <script type="text/javascript" src="Stemwijzer.js"></script>
 </html>

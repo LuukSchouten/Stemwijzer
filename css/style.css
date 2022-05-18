@@ -44,6 +44,7 @@ body{
 .middle{
     margin-left: 10em;
     margin-top: 3.5em;
+    height: 8.7em;
 }
 
 .note{
@@ -171,6 +172,7 @@ body{
 }
 
 .options{
+    position: relative;
     margin-top: 4em;
     margin-left: 10em;
 }
