@@ -1,7 +1,14 @@
 var stellingNmr = 0;
 
+var choices = [];
+
 var stellingHeader = document.getElementById("stellingHead");
 var stelling = document.getElementById("stelling");
+
+//define buttons
+var button1 = document.getElementById("eens");
+var button2 = document.getElementById("none");
+var button3 = document.getElementById("oneens");
 
 updateStelling();
 
@@ -11,16 +18,7 @@ function updateStelling(){
             stellingHeader.innerHTML = i+1 + ". " + subjects[stellingNmr].title;
             stelling.innerHTML = subjects[stellingNmr].statement;
         }
-    }
-
-    //make button color blue if it is the last stelling
-    if(stellingNmr == subjects.length-1){
-        document.getElementById("next").style.backgroundColor = "#2196F3";
-    }
-    else{
-        document.getElementById("next").style.backgroundColor = "#F44336";
-    }
-
+    }   
 }
 
 function goBack(){
@@ -34,9 +32,18 @@ function goBack(){
 function next(){
     if(stellingNmr < 29){
         stellingNmr += 1;
-        updateStelling(e);
+        updateStelling();
     }
+
+    button1.style.backgroundColor = "#00a8ff";
+    button2.style.backgroundColor = "#00a8ff";
+    button3.style.backgroundColor = "#00a8ff";
 }
+
+
+
+
+
 
 
 
