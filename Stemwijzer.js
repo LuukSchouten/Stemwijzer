@@ -12,6 +12,65 @@ var button3 = document.getElementById("oneens");
 
 updateStelling();
 
+button1.onclick = function(){
+    if(choices[stellingNmr]){
+        //remove current choice
+        choices.splice(stellingNmr, 1);
+    }
+    //add new choice
+    choices.splice(stellingNmr, 0, "eens");
+    next();
+}
+
+
+button2.onclick = function(){
+    if(choices[stellingNmr]){
+        //remove current choice
+        choices.splice(stellingNmr, 1);
+    }
+    //add new choice
+    choices.splice(stellingNmr, 0, "none");
+    next();
+}
+
+
+button3.onclick = function(){
+    if(choices[stellingNmr]){
+        //remove current choice
+        choices.splice(stellingNmr, 1);
+    }
+    //add new choice
+    choices.splice(stellingNmr, 0, "oneens");
+    next();
+}
+
+
+function next(){
+    stellingNmr += 1;
+    console.log(stellingNmr);
+    console.log(choices);
+
+    if(stellingNmr == subjects.length){
+        results();
+    }
+    
+    updateStelling();
+
+
+}
+
+
+function goBack(){
+    if(stellingNmr <= 0){
+        window.location.href = "index.html";
+    }
+    stellingNmr -= 1;
+    console.log(stellingNmr);
+    console.log(choices);
+    updateStelling();
+}
+
+
 function updateStelling(){
     for(i=0; i < subjects.length; i++){
         if(stellingNmr == i){
@@ -19,80 +78,39 @@ function updateStelling(){
             stelling.innerHTML = subjects[stellingNmr].statement;
         }
     }   
-    
-    console.log(stellingNmr);
-    console.log(choices[stellingNmr]);
 
     //make switch where if button is clicked, it will add the value to the array
     switch(choices[stellingNmr]){
         case "eens": 
-            button1.style.backgroundColor = "#018aa9";
+            button1.style.backgroundColor = "#00a8ff";
             //give button2 and button3 the default color
             button2.style.backgroundColor = "";
             button3.style.backgroundColor = "";
             break;
         case "none":
-            button2.style.backgroundColor = "#018aa9";
+            button2.style.backgroundColor = "#00a8ff";
             //give button1 and button3 the default color
             button1.style.backgroundColor = "";
             button3.style.backgroundColor = "";
             break;
         case "oneens":
-            button3.style.backgroundColor = "#018aa9";
+            button3.style.backgroundColor = "#00a8ff";
             //give button1 and button2 the default color
             button1.style.backgroundColor = "";
             button2.style.backgroundColor = "";
             break;
-    }
-
-}
-
-function goBack(){
-    if(stellingNmr <= 0){
-        window.location.href = "index.html";
-    }
-    stellingNmr -= 1;
-    updateStelling();
-}
-
-function next(){
-    if(stellingNmr < 29){
-        stellingNmr += 1;
-        updateStelling();
+        default:
+            button1.style.backgroundColor = "";
+            button2.style.backgroundColor = "";
+            button3.style.backgroundColor = "";
+            break;
     }
 }
 
-button1.onclick = function(){
-    if(choices[stellingNmr]){
-        choices.pop();
-    }
-    choices.push("eens");
-    console.log(choices);
-    next();
+
+function results(){
+    stellingNmr = 0;
 }
-
-button2.onclick = function(){
-    if(choices[stellingNmr]){
-        choices.pop();
-    }
-    choices.push("none");
-    console.log(choices);
-    next();
-}
-
-button3.onclick = function(){
-    if(choices[stellingNmr]){
-        choices.pop();
-    }
-    choices.push("oneens");
-    console.log(choices);
-    next();
-}
-
-
-
-
-
 
 
 
