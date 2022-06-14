@@ -2,13 +2,15 @@ var stellingNmr = 0;
 
 var choices = [];
 
+console.log(subjects[0].parties[0].position);
+
 var stellingHeader = document.getElementById("stellingHead");
 var stelling = document.getElementById("stelling");
 
 //define buttons
-var button1 = document.getElementById("eens");
+var button1 = document.getElementById("pro");
 var button2 = document.getElementById("none");
-var button3 = document.getElementById("oneens");
+var button3 = document.getElementById("contra");
 
 updateStelling();
 
@@ -18,7 +20,7 @@ button1.onclick = function(){
         choices.splice(stellingNmr, 1);
     }
     //add new choice
-    choices.splice(stellingNmr, 0, "eens");
+    choices.splice(stellingNmr, 0, "pro");
     next();
 }
 
@@ -40,7 +42,7 @@ button3.onclick = function(){
         choices.splice(stellingNmr, 1);
     }
     //add new choice
-    choices.splice(stellingNmr, 0, "oneens");
+    choices.splice(stellingNmr, 0, "contra");
     next();
 }
 
@@ -81,7 +83,7 @@ function updateStelling(){
 
     //make switch where if button is clicked, it will add the value to the array
     switch(choices[stellingNmr]){
-        case "eens": 
+        case "pro":
             button1.style.backgroundColor = "#00a8ff";
             //give button2 and button3 the default color
             button2.style.backgroundColor = "";
@@ -93,7 +95,7 @@ function updateStelling(){
             button1.style.backgroundColor = "";
             button3.style.backgroundColor = "";
             break;
-        case "oneens":
+        case "contra":
             button3.style.backgroundColor = "#00a8ff";
             //give button1 and button2 the default color
             button1.style.backgroundColor = "";
@@ -103,6 +105,22 @@ function updateStelling(){
             button1.style.backgroundColor = "";
             button2.style.backgroundColor = "";
             button3.style.backgroundColor = "";
+            break;
+    }
+
+    //switch for scoring
+    switch(subjects[stellingNmr].parties[stellingNmr].position){
+        case "pro":
+            console.log("pro");
+            break;
+        case "none":
+            console.log("none");
+            break;
+        case "contra":
+            console.log("contra");
+            break;
+        default:
+            console.log("test");
             break;
     }
 }
