@@ -14,6 +14,7 @@ var button3 = document.getElementById("contra");
 
 updateStelling();
 
+//when clicking button 1 remove the choice that was selected before, replace it with option 1 and put in array.
 button1.onclick = function(){
     if(choices[stellingNmr]){
         //remove current choice
@@ -24,7 +25,7 @@ button1.onclick = function(){
     next();
 }
 
-
+//when clicking button 2 remove the choice that was selected before, replace it with option 2 and put in array.
 button2.onclick = function(){
     if(choices[stellingNmr]){
         //remove current choice
@@ -35,7 +36,7 @@ button2.onclick = function(){
     next();
 }
 
-
+//when clicking button 3 remove the choice that was selected before, replace it with option 3 and put in array.
 button3.onclick = function(){
     if(choices[stellingNmr]){
         //remove current choice
@@ -46,19 +47,19 @@ button3.onclick = function(){
     next();
 }
 
-
+//continue to the next question, add 1 to stellingNmr 
 function next(){
     stellingNmr += 1;
     console.log(stellingNmr);
     console.log(choices);
 
+    //if all questions have been answered, load the results();
     if(stellingNmr == subjects.length){
         results();
     }
-    
+
+    //load the next question
     updateStelling();
-
-
 }
 
 
@@ -69,10 +70,11 @@ function goBack(){
     stellingNmr -= 1;
     console.log(stellingNmr);
     console.log(choices);
+    
     updateStelling();
 }
 
-
+//changes the title and statement to that of the next question
 function updateStelling(){
     for(i=0; i < subjects.length; i++){
         if(stellingNmr == i){
@@ -107,28 +109,9 @@ function updateStelling(){
             button3.style.backgroundColor = "";
             break;
     }
-
-    //switch for scoring
-    switch(subjects[stellingNmr].parties[stellingNmr].position){
-        case "pro":
-            console.log("pro");
-            break;
-        case "none":
-            console.log("none");
-            break;
-        case "contra":
-            console.log("contra");
-            break;
-        default:
-            console.log("test");
-            break;
-    }
 }
 
 
-function results(){
-    stellingNmr = 0;
-}
 
 
 
