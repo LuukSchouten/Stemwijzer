@@ -1,17 +1,46 @@
+
+
 var stellingNmr = 0;
 
 var choices = [];
 
-console.log(subjects[0].parties[0].position);
+parties.forEach(party => {
+    party.points = 0;
+}); 
+
+subjects.forEach(subject => {
+    subject.important = false;
+});
 
 var stellingHeader = document.getElementById("stellingHead");
 var stelling = document.getElementById("stelling");
+
+var content = document.getElementById("content");
+var important = document.getElementById("important");
+var resultaat = document.getElementById("results");
+var options = document.getElementById("options");
+var opinions = document.getElementById("opinions");
+var extraContent = document.getElementById("extra_content");
+var resultsDiv = document.getElementById("resultsDiv");
+var main = document.getElementById("main");
+
+resultaat.style.display = "none";
+important.style.display = "none";
+resultsDiv.style.display = "none";
 
 //define buttons
 var button1 = document.getElementById("pro");
 var button2 = document.getElementById("none");
 var button3 = document.getElementById("contra");
 var button4 = document.getElementById("skip");
+var button5 = document.getElementById("resultsBtn");
+
+button5.style.display = "none";
+
+//set ammount of points for each party
+parties.forEach(party => {
+    party.points = 0;
+}); 
 
 updateStelling();
 
@@ -57,15 +86,19 @@ button4.onclick = function(){
     }
 }
 
+button5.onclick = function(){
+    results();
+}
+
 //continue to the next question, add 1 to stellingNmr 
 function next(){
     stellingNmr += 1;
     console.log(stellingNmr);
     console.log(choices);
 
-    //if all questions have been answered, load the results();
+    //if all questions have been answered, load the finalPage();
     if(stellingNmr == subjects.length){
-        results();
+        finalPage();
     }
 
     //load the next question
@@ -80,7 +113,11 @@ function goBack(){
     stellingNmr -= 1;
     console.log(stellingNmr);
     console.log(choices);
-    
+    options.style.display = "block";
+    opinions.style.display = "flex";
+    important.style.display = "none";
+    button5.style.display = "none";    
+    resultsDiv.style.display = "none";
     updateStelling();
 }
 
@@ -100,21 +137,18 @@ function updateStelling(){
             //give button2 and button3 the default color
             button2.style.backgroundColor = "";
             button3.style.backgroundColor = "";
-            // add 1 point to all parties that are pro on this stellingNmr
             break;
         case "none":
             button2.style.backgroundColor = "#00a8ff";
             //give button1 and button3 the default color
             button1.style.backgroundColor = "";
             button3.style.backgroundColor = "";
-            // add 1 point to all parties that are pro on this stellingNmr
             break;
         case "contra":
             button3.style.backgroundColor = "#00a8ff";
             //give button1 and button2 the default color
             button1.style.backgroundColor = "";
             button2.style.backgroundColor = "";
-            // add 1 point to all parties that are pro on this stellingNmr
             break;
         default:
             button1.style.backgroundColor = "";
@@ -122,6 +156,27 @@ function updateStelling(){
             button3.style.backgroundColor = "";
             break;
     }
+}
+
+function finalPage(){
+    stellingHeader.innerHTML = "Zijn er onderwerpen die u extra belangrijk vind?";
+    stelling.innerHTML = "Aangevinkte stellingen tellen extra mee bij het berekenen van het resultaat.";
+    options.style.display = "none";
+    opinions.style.display = "none";
+    button5.style.display = "block";
+    resultsDiv.style.display = "block";
+   
+    for(i=0; i<subjects.length; i++){
+        important.innerHTML += "<div class='important_subjects'> <input type='checkbox' id='important_"+i+"'> <p>"+subjects[i].title+"</p> <hr> </div>";
+    }
+
+    important.style.display = "grid";
+}
+
+function results(){
+    content.style.display = "none";
+    resultaat.style.display = "block";
+    main.style.height = "60em";
 }
 
 

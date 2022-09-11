@@ -10,38 +10,52 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="main">
+        <div class="main" id="main">
+            <div id="results">
+                <h2> Resultaat: </h2>
+            </div>
 
-            <div class="progressBar">
+            <div id="content">
+
+                <div class="progressBar">
+                    
+                </div>
+                
+                <button onclick="goBack();" class="backBtn" id="backBtn">
+                    <div>
+                        <i class="fa-solid fa-arrow-left fa-2x"></i>
+                    </div>
+                </button>
+
+                <div class="middle">
+                    <div class="questionDiv">
+                        <h2 class="questionTxt blue" id="stellingHead"></h2>
+                        <h2 class="question" id="stelling"></h2>
+                    </div>
+                </div>
+
+                <div class="options" id="options">
+                    <button id="pro" class="optionbtn" onclick="next();">Eens</button>
+                    <button id="none" class="optionbtn" onclick="next();">Geen van beide</button>
+                    <button id="contra" class="optionbtn" onclick="next();">Oneens</button>
+                    <button id="skip" class="skip" onclick="next();"><p>Sla deze vraag over<i class="fa-solid fa-arrow-right fa-sm arrow"></i></p></i></button>
+                </div>
+
+                <div class="opinions" id="opinions">
+                    <i class="fa-solid fa-comments fa-2x osvg" style="color: #00a8ff"></i>
+                    <i class="fa-solid fa-play fa-2x osvg"></i>
+                    <h3>Wat vinden de partijen?</h3>
+                </div>
+
+                <div id="resultsDiv">
+                    <button id="resultsBtn">Ga verder</button>
+                    <h2>Extra belangrijke onderwerpen</h2>
+                </div>
+
+                <div id="important">
+                </div>
                 
             </div>
-            
-            <button onclick="goBack();" class="backBtn">
-                <div>
-                    <i class="fa-solid fa-arrow-left fa-2x"></i>
-                </div>
-            </button>
-
-            <div class="middle">
-                <div class="questionDiv">
-                    <h2 class="questionTxt blue" id="stellingHead"></h2>
-                    <h2 class="question" id="stelling"></h2>
-                </div>
-            </div>
-
-            <div class="options">
-                <button id="pro" class="optionbtn" onclick="next();">Eens</button>
-                <button id="none" class="optionbtn" onclick="next();">Geen van beide</button>
-                <button id="contra" class="optionbtn" onclick="next();">Oneens</button>
-                <button id="skip" class="skip" onclick="next();"><p>Sla deze vraag over<i class="fa-solid fa-arrow-right fa-sm arrow"></i></p></i></button>
-            </div>
-
-            <div class="opinions">
-                <i class="fa-solid fa-comments fa-2x osvg" style="color: #00a8ff"></i>
-                <i class="fa-solid fa-play fa-2x osvg"></i>
-                <h3>Wat vinden de partijen?</h3>
-            </div>
-            
         </div>
     </div>
 </body>
