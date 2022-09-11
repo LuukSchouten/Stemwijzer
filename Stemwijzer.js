@@ -11,6 +11,7 @@ var stelling = document.getElementById("stelling");
 var button1 = document.getElementById("pro");
 var button2 = document.getElementById("none");
 var button3 = document.getElementById("contra");
+var button4 = document.getElementById("skip");
 
 updateStelling();
 
@@ -45,6 +46,15 @@ button3.onclick = function(){
     //add new choice
     choices.splice(stellingNmr, 0, "contra");
     next();
+}
+
+button4.onclick = function(){
+    if(choices[stellingNmr]){
+        next();
+    }else{
+        choices.splice(stellingNmr, stellingNmr, "skipped");
+        next();
+    }
 }
 
 //continue to the next question, add 1 to stellingNmr 
@@ -90,18 +100,21 @@ function updateStelling(){
             //give button2 and button3 the default color
             button2.style.backgroundColor = "";
             button3.style.backgroundColor = "";
+            // add 1 point to all parties that are pro on this stellingNmr
             break;
         case "none":
             button2.style.backgroundColor = "#00a8ff";
             //give button1 and button3 the default color
             button1.style.backgroundColor = "";
             button3.style.backgroundColor = "";
+            // add 1 point to all parties that are pro on this stellingNmr
             break;
         case "contra":
             button3.style.backgroundColor = "#00a8ff";
             //give button1 and button2 the default color
             button1.style.backgroundColor = "";
             button2.style.backgroundColor = "";
+            // add 1 point to all parties that are pro on this stellingNmr
             break;
         default:
             button1.style.backgroundColor = "";
