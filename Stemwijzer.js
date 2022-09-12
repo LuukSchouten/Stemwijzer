@@ -3,14 +3,7 @@
 var stellingNmr = 0;
 
 var choices = [];
-
-parties.forEach(party => {
-    party.points = 0;
-}); 
-
-subjects.forEach(subject => {
-    subject.important = false;
-});
+var important_subjects = [];
 
 var stellingHeader = document.getElementById("stellingHead");
 var stelling = document.getElementById("stelling");
@@ -36,11 +29,6 @@ var button4 = document.getElementById("skip");
 var button5 = document.getElementById("resultsBtn");
 
 button5.style.display = "none";
-
-//set ammount of points for each party
-parties.forEach(party => {
-    party.points = 0;
-}); 
 
 updateStelling();
 
@@ -87,7 +75,7 @@ button4.onclick = function(){
 }
 
 button5.onclick = function(){
-    results();
+    checkBox();
 }
 
 //continue to the next question, add 1 to stellingNmr 
@@ -173,10 +161,44 @@ function finalPage(){
     important.style.display = "grid";
 }
 
+function checkBox(){
+    var checkboxAll = document.querySelectorAll('input[type="checkbox"]');
+
+    for(i=0; i<checkboxAll.length; i++){
+        important_subjects.push(checkboxAll[i].checked);
+    }
+    
+    results();
+}
+
 function results(){
+    //set ammount of points for each party
+    parties.forEach(party => {
+        party.points = 0;
+    }); 
+
     content.style.display = "none";
     resultaat.style.display = "block";
     main.style.height = "60em";
+
+    var answer = choices[0];
+
+    console.log(subjects[0].parties);
+
+    subjects[0].parties.forEach( (party) =>{
+        //console.log(party.name, party.position, answer, answer==party.position);
+        if(answer == party.position){
+            // update this party in parties array
+            parties.forEach(item => {
+                if (item.name == party.name)
+                item.points = item.points + 1;
+            }); 
+
+        }
+    });
+
+    // elke party in parties heeft nu een points
+    // console.log(parties);
 }
 
 
