@@ -167,9 +167,13 @@ function checkBox(){
     for(i=0; i<checkboxAll.length; i++){
         important_subjects.push(checkboxAll[i].checked);
     }
+
+    console.log(important_subjects);
     
     results();
 }
+
+
 
 function results(){
     //set ammount of points for each party
@@ -183,19 +187,27 @@ function results(){
 
     var answer = choices[0];
 
-    console.log(subjects[0].parties);
-
-    subjects[0].parties.forEach( (party) =>{
+    for(i=0; i<subjects.length; i++){
+    subjects[i].parties.forEach( (party) =>{
         //console.log(party.name, party.position, answer, answer==party.position);
         if(answer == party.position){
             // update this party in parties array
             parties.forEach(item => {
-                if (item.name == party.name)
-                item.points = item.points + 1;
+                if (item.name == party.name){
+                    console.log(party.position);
+                    if(party.position == 'pro' && important_subjects[i]){   
+                        item.points = item.points + 2;
+                    }else{
+                        item.points = item.points + 1;
+                    }
+                }
             }); 
 
         }
     });
+}
+
+console.log(parties[0].points);
 
     // elke party in parties heeft nu een points
     // console.log(parties);
