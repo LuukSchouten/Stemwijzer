@@ -1,6 +1,5 @@
-
-
 var stellingNmr = 0;
+const sizeDiff = 10;
 
 var choices = [];
 var important_subjects = [];
@@ -16,6 +15,9 @@ var opinions = document.getElementById("opinions");
 var extraContent = document.getElementById("extra_content");
 var resultsDiv = document.getElementById("resultsDiv");
 var main = document.getElementById("main");
+var sortBtnsDiv = document.getElementById("sortBtnsDiv");
+var partyResultsDiv = document.getElementById("partyResultsDiv");
+var backBtn = document.getElementById("backBtn");
 
 resultaat.style.display = "none";
 important.style.display = "none";
@@ -28,13 +30,20 @@ var button3 = document.getElementById("contra");
 var button4 = document.getElementById("skip");
 var button5 = document.getElementById("resultsBtn");
 
+var sort_btn = document.querySelectorAll(".sort_btn");
+
+var bigParties = document.getElementById("bigParties");
+var smallParties = document.getElementById("smallParties");
+var seculaireParties = document.getElementById("seculaireParties");
+var allParties = document.getElementById("allParties");
+
 button5.style.display = "none";
 
 updateStelling();
 
 //when clicking button 1 remove the choice that was selected before, replace it with option 1 and put in array.
-button1.onclick = function(){
-    if(choices[stellingNmr]){
+button1.onclick = function () {
+    if (choices[stellingNmr]) {
         //remove current choice
         choices.splice(stellingNmr, 1);
     }
@@ -44,8 +53,8 @@ button1.onclick = function(){
 }
 
 //when clicking button 2 remove the choice that was selected before, replace it with option 2 and put in array.
-button2.onclick = function(){
-    if(choices[stellingNmr]){
+button2.onclick = function () {
+    if (choices[stellingNmr]) {
         //remove current choice
         choices.splice(stellingNmr, 1);
     }
@@ -55,8 +64,8 @@ button2.onclick = function(){
 }
 
 //when clicking button 3 remove the choice that was selected before, replace it with option 3 and put in array.
-button3.onclick = function(){
-    if(choices[stellingNmr]){
+button3.onclick = function () {
+    if (choices[stellingNmr]) {
         //remove current choice
         choices.splice(stellingNmr, 1);
     }
@@ -65,27 +74,28 @@ button3.onclick = function(){
     next();
 }
 
-button4.onclick = function(){
-    if(choices[stellingNmr]){
+button4.onclick = function () {
+    if (choices[stellingNmr]) {
         next();
-    }else{
+    } else {
         choices.splice(stellingNmr, stellingNmr, "skipped");
         next();
     }
 }
 
-button5.onclick = function(){
-    checkBox();
+button5.onclick = checkBox;
+
+for (var i = 0; i < sort_btn.length; i++) {
+    sort_btn[i].onclick = sortResults;
 }
 
+
 //continue to the next question, add 1 to stellingNmr 
-function next(){
+function next() {
     stellingNmr += 1;
-    console.log(stellingNmr);
-    console.log(choices);
 
     //if all questions have been answered, load the finalPage();
-    if(stellingNmr == subjects.length){
+    if (stellingNmr == subjects.length) {
         finalPage();
     }
 
@@ -94,32 +104,31 @@ function next(){
 }
 
 
-function goBack(){
-    if(stellingNmr <= 0){
+function goBack() {
+    if (stellingNmr <= 0) {
         window.location.href = "index.html";
     }
     stellingNmr -= 1;
-    console.log(stellingNmr);
-    console.log(choices);
     options.style.display = "block";
     opinions.style.display = "flex";
     important.style.display = "none";
-    button5.style.display = "none";    
+    button5.style.display = "none";
     resultsDiv.style.display = "none";
     updateStelling();
 }
 
+
 //changes the title and statement to that of the next question
-function updateStelling(){
-    for(i=0; i < subjects.length; i++){
-        if(stellingNmr == i){
-            stellingHeader.innerHTML = i+1 + ". " + subjects[stellingNmr].title;
+function updateStelling() {
+    for (i = 0; i < subjects.length; i++) {
+        if (stellingNmr == i) {
+            stellingHeader.innerHTML = i + 1 + ". " + subjects[stellingNmr].title;
             stelling.innerHTML = subjects[stellingNmr].statement;
         }
-    }   
+    }
 
     //make switch where if button is clicked, it will add the value to the array
-    switch(choices[stellingNmr]){
+    switch (choices[stellingNmr]) {
         case "pro":
             button1.style.backgroundColor = "#00a8ff";
             //give button2 and button3 the default color
@@ -146,75 +155,119 @@ function updateStelling(){
     }
 }
 
-function finalPage(){
+
+function finalPage() {
     stellingHeader.innerHTML = "Zijn er onderwerpen die u extra belangrijk vind?";
     stelling.innerHTML = "Aangevinkte stellingen tellen extra mee bij het berekenen van het resultaat.";
     options.style.display = "none";
     opinions.style.display = "none";
     button5.style.display = "block";
     resultsDiv.style.display = "block";
-   
-    for(i=0; i<subjects.length; i++){
-        important.innerHTML += "<div class='important_subjects'> <input type='checkbox' id='important_"+i+"'> <p>"+subjects[i].title+"</p> <hr> </div>";
+
+    for (i = 0; i < subjects.length; i++) {
+        important.innerHTML += "<div class='important_subjects'> <input type='checkbox' id='important_" + i + "'> <p>" + subjects[i].title + "</p> <hr> </div>";
     }
 
-    important.style.display = "grid";
+    important.style.display = "block";
+    backBtn.style.display = "none";
 }
 
-function checkBox(){
+
+function checkBox() {
     var checkboxAll = document.querySelectorAll('input[type="checkbox"]');
 
-    for(i=0; i<checkboxAll.length; i++){
+    for (i = 0; i < checkboxAll.length; i++) {
         important_subjects.push(checkboxAll[i].checked);
     }
 
-    console.log(important_subjects);
-    
     results();
 }
 
 
-
-function results(){
+function results() {
     //set ammount of points for each party
     parties.forEach(party => {
         party.points = 0;
-    }); 
+    });
 
     content.style.display = "none";
     resultaat.style.display = "block";
-    main.style.height = "60em";
+    main.style.height = "50em";
+    sortBtnsDiv.style.display = "block";
 
     var answer = choices[0];
 
-    for(i=0; i<subjects.length; i++){
-    subjects[i].parties.forEach( (party) =>{
-        //console.log(party.name, party.position, answer, answer==party.position);
-        if(answer == party.position){
-            // update this party in parties array
-            parties.forEach(item => {
-                if (item.name == party.name){
-                    console.log(party.position);
-                    if(party.position == 'pro' && important_subjects[i]){   
-                        item.points = item.points + 2;
-                    }else{
-                        item.points = item.points + 1;
+    for (i = 0; i < subjects.length; i++) {
+        subjects[i].parties.forEach((party) => {
+            if (answer == party.position) {
+                parties.forEach(item => {
+                    if (item.name == party.name) {
+                        if (party.position == 'pro' && important_subjects[i]) {
+                            item.points = item.points + 2;
+                        } else if (party.position == 'pro') {
+                            item.points = item.points + 1;
+                        }
+                        if (party.position == 'none' && important_subjects[i]) {
+                            item.points = item.points + 2;
+                        } else if (party.position == 'none') {
+                            item.points = item.points + 1;
+                        }
+                        if (party.position == 'contra' && important_subjects[i]) {
+                            item.points = item.points + 2;
+                        } else if (party.position == 'contra') {
+                            item.points = item.points + 1;
+                        }
                     }
+                });
+            }
+        });
+    }
+
+    for (i = 0; i < subjects.length; i++) {
+        partyResultsDiv.innerHTML += "<div class='partyResults' id='" + parties[i].name + "'> <p>" + parties[i].name + ": " + parties[i].points + "</p> </div>";
+    }
+}
+
+
+function sortResults() {
+    switch (this.id) {
+        case bigParties.id:
+            for (i = 0; i < subjects.length; i++) {
+                if (parties[i].size < sizeDiff) {
+                    var PartyName = document.getElementById(parties[i].name);
+                    PartyName.classList.add('hiddenParties');
+                } else {
+                    var PartyName = document.getElementById(parties[i].name);
+                    PartyName.classList.remove('hiddenParties');
                 }
-            }); 
-
-        }
-    });
+            }
+            break;
+        case smallParties.id:
+            for (i = 0; i < subjects.length; i++) {
+                if (parties[i].size > sizeDiff) {
+                    var PartyName = document.getElementById(parties[i].name);
+                    PartyName.classList.add('hiddenParties');
+                } else {
+                    var PartyName = document.getElementById(parties[i].name);
+                    PartyName.classList.remove('hiddenParties');
+                }
+            }
+            break;
+        case seculaireParties.id:
+            for (i = 0; i < subjects.length; i++) {
+                if (parties[i].secular == true) {
+                    var PartyName = document.getElementById(parties[i].name);
+                    PartyName.classList.remove('hiddenParties');
+                } else {
+                    var PartyName = document.getElementById(parties[i].name);
+                    PartyName.classList.add('hiddenParties');
+                }
+            }
+            break;
+        default:
+            for (i = 0; i < subjects.length; i++) {
+                var PartyName = document.getElementById(parties[i].name);
+                PartyName.classList.remove('hiddenParties');
+            }
+    }
 }
-
-console.log(parties[0].points);
-
-    // elke party in parties heeft nu een points
-    // console.log(parties);
-}
-
-
-
-
-
-

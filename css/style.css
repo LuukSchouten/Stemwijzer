@@ -241,6 +241,44 @@ body{
 }
 
 #results{
-    padding: 3em 7em;
+    padding: 3em 7em 0em 7em;
+}
+
+#important{
+    padding-left: 10em;
+    padding-right: 10em;
+}
+
+.important_subjects{
+    width: 20em;
+}
+
+.important_subjects input{
+    float: left;
+}
+
+.important_subjects hr{
+    width: 300px;
+    
+}
+
+.sort_btn{
+    padding: 1em;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    margin-right: 0.5em;
+}
+
+.sort_btn:hover{
+    cursor: pointer;
+}
+
+#partyResultsDiv{
+    margin-top: 4em;
+}
+
+.hiddenParties{
+    display: none;
 }
 
