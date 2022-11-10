@@ -103,7 +103,7 @@ function next() {
     updateStelling();
 }
 
-
+//go back to previous index.html
 function goBack() {
     if (stellingNmr <= 0) {
         window.location.href = "index.html";
@@ -155,7 +155,7 @@ function updateStelling() {
     }
 }
 
-
+//Go to final page
 function finalPage() {
     stellingHeader.innerHTML = "Zijn er onderwerpen die u extra belangrijk vind?";
     stelling.innerHTML = "Aangevinkte stellingen tellen extra mee bij het berekenen van het resultaat.";
@@ -183,7 +183,7 @@ function checkBox() {
     results();
 }
 
-
+//go to restults page
 function results() {
     //set ammount of points for each party
     parties.forEach(party => {
@@ -228,7 +228,7 @@ function results() {
     }
 }
 
-
+//sort results 
 function sortResults() {
     switch (this.id) {
         case bigParties.id:
